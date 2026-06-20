@@ -8,7 +8,7 @@ const path = require("path");
 const DIR = path.join(__dirname, "buildathon-handbook");
 const FILES = [
   { file: "00-welcome.md", nav: "Welcome", cat: "Start", num: "00" },
-  { file: "01-setup.md", nav: "Before You Arrive", cat: "Start", num: "01" },
+  { file: "01-setup.md", nav: "Before You Start", cat: "Start", num: "01" },
   { file: "02-ideation.md", nav: "Ideate", cat: "Build", num: "02" },
   { file: "03-build.md", nav: "Build", cat: "Build", num: "03" },
   { file: "04-capabilities.md", nav: "Capabilities", cat: "Build", num: "04" },

@@ -54,7 +54,7 @@ If you can send a text message, you can do this.
 ## 📁 Make your project folder
 
 Everything you build today lives in **one folder** on your laptop. Set it up
-once (do the **Before You Arrive** installs first, then this):
+once (do the **Before You Start** setup first, then this):
 
 1. In VS Code, click **File → Open Folder…**
 2. Click **New Folder**, name it **`my-agent`**, and open it.
@@ -77,5 +77,5 @@ That drops in everything — your agent's files **and** the two short guides
 (`ideation.md`, `build.md`) your AI will follow next. This folder is your home
 base for the whole day.
 
-> 👉 Next: do **Before You Arrive** to get set up (if you haven't), then
+> 👉 Next: do **Before You Start** to get set up (if you haven't), then
 > **Ideate**.

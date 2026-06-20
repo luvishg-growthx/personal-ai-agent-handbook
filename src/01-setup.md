@@ -1,4 +1,4 @@
-# Before you arrive — get your laptop ready
+# Things to do before you start the buildathon
 
 A few quick installs so you can spend the day building, not setting up. If any
 step trips you up, a mentor will sort it in two minutes.
