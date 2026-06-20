@@ -8,6 +8,43 @@ step trips you up, a mentor will sort it in two minutes.
 
 ---
 
+## ✅ The fast way — one prompt checks & installs everything
+
+Once you've installed **Claude Code** (Step 6 below) and can run `claude`, you
+don't have to do the rest by hand. Start Claude in your project folder and paste
+this — it checks what's on your computer and **installs anything missing**:
+
+> 📋 **Paste this to Claude:**
+```text
+You're my setup assistant for a build-your-own-AI workshop. Check that my computer
+has everything I need, and install anything missing. Don't build my agent yet —
+just get me ready.
+
+1. Figure out my operating system (macOS or Windows).
+2. Check each of these and tell me ✅ have it / ❌ missing (show the version):
+   - Node.js (run: node --version) — I need version 20 or higher
+   - npm (npm --version)
+   - Git (git --version)
+   - GitHub CLI (gh --version), and whether I'm logged in (gh auth status)
+3. Install anything missing or too old, explaining each step in one simple line
+   before you run it:
+   - macOS: use Homebrew (e.g. brew install node git gh). If Homebrew isn't
+     installed, install it first.
+   - Windows: use winget (e.g. winget install OpenJS.NodeJS.LTS Git.Git GitHub.cli).
+4. If GitHub CLI is installed but I'm NOT logged in, tell me to run "gh auth login"
+   and walk me through it in plain steps (you can't log in for me).
+5. Finish with a simple checklist showing everything is ✅ ready, and clearly list
+   anything I still need to do myself.
+
+Keep it friendly and simple — assume I'm not a coder.
+```
+
+> 🐣 Chicken-and-egg: you need **Claude Code itself** before you can paste that
+> prompt — so do **Step 6** first (it's one line), then run this check. Prefer to
+> do everything by hand? The steps below walk through each tool.
+
+---
+
 ## 1. A code editor
 
 Install **VS Code** (free): <https://code.visualstudio.com>. Open it once so it's
