@@ -36,11 +36,10 @@ A chat window in your browser where you talk to your agent. It will:
 
 ## Three words you'll see a lot
 
-You'll use an AI helper called **Claude Code** (or **Codex** — same idea). Think
-of it as a **super-smart assistant that lives in a little text box on your
-computer and can actually do things** — create files, run your agent, fix
-mistakes — just by you asking in plain English.
-
+- **Claude Code** (or **Codex** — same idea) = your AI helper. Think of it as a
+  super-smart assistant that lives in a little text box on your computer and can
+  actually *do* things — create files, run your agent, fix mistakes — just by you
+  asking in plain English.
 - **The "terminal"** = the text box where you type to Claude. That's it. It looks
   plain, but it's just a place to chat. Don't be scared of it.
 - **A "prompt"** = a message you paste to Claude. Every step in this handbook

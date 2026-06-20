@@ -133,7 +133,8 @@ pre.code code{background:none;border:none;padding:0;font-size:12.5px;color:var(-
 <div class="callout">One rule that makes today work: <strong>you talk, the AI builds.</strong> When something<br/>breaks, you don't fix it by hand — you tell the AI and it fixes it.</div>
 <hr class="rule"/>
 <h2>Three words you'll see a lot</h2>
-<p>You'll use an AI helper called <strong>Claude Code</strong> (or <strong>Codex</strong> — same idea). Think of it as a <strong>super-smart assistant that lives in a little text box on your computer and can actually do things</strong> — create files, run your agent, fix mistakes — just by you asking in plain English.</p>
+<ul><li><strong>Claude Code</strong> (or <strong>Codex</strong> — same idea) = your AI helper. Think of it as a</li></ul>
+<p>  super-smart assistant that lives in a little text box on your computer and can   actually <em>do</em> things — create files, run your agent, fix mistakes — just by you   asking in plain English.</p>
 <ul><li><strong>The "terminal"</strong> = the text box where you type to Claude. That's it. It looks</li></ul>
 <p>  plain, but it's just a place to chat. Don't be scared of it.</p>
 <ul><li><strong>A "prompt"</strong> = a message you paste to Claude. Every step in this handbook</li></ul>
@@ -272,54 +273,84 @@ PERSONALITY.md to be more [what you want], then I'll test again.</pre></div>
 <section class="page" data-page="4">
 <div class="page-num">04 · Build</div>
 <h1>Powers — everything your agent can do</h1>
-<p>Your web agent (Iteration 1) chats like you and remembers. Now give it powers to <strong>automate your workflows</strong>. Each power is a <strong>ready-made module or connector</strong> — you don't build it, you just ask Claude (it follows the <code>build.md</code> guide that came with your starter) and it wires it in.</p>
-<p><strong>Click a power to see what it unlocks and how to switch it on.</strong> Add the ones you'd actually use — easiest in order — and <strong>test each by talking to your agent</strong>. <strong>Memory</strong> is the best first one.</p>
-<div class="callout">Everything wires into your agent's brain (<code>agent.js</code>), so each power works in<br/>your browser chat the moment it's added.</div>
+<p>Your web agent (Iteration 1) chats like you and remembers. Now give it powers to <strong>automate your workflows</strong>. Each capability below is its own <strong>drop-down — click to expand it</strong> and see exactly how to switch it on and use it.</p>
+<p>Most capabilities come from a ready-made <strong>power</strong> (a module you add once) or a <strong>connector</strong> (a one-time web sign-in). Adding one power often unlocks several capabilities. <strong>Memory</strong> is the best first one.</p>
+<div class="callout">"Switch it on" prompts tell Claude to follow the <code>build.md</code> guide that came with<br/>your starter — it clones the right module and wires it into <code>agent.js</code>. After<br/>it's on, the <strong>Try it</strong> prompts work in your browser chat.</div>
 <hr class="rule"/>
-<details class="cap"><summary><span class="cap-title">Iteration 2 · 🧠 Memory — remembers across chats</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
-<ul><li>Remembers facts you tell it (people, preferences, decisions) — forever.</li><li>Pulls up relevant past context automatically before replying.</li><li>Answers <em>"what did we discuss about X?"</em> from your own history.</li><li>Gets sharper over time (useful memories kept, noise forgotten).</li></ul>
-<p><strong>Switch it on:</strong></p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-5"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-5">Add the Memory power to my agent — follow the Memory (Iteration 2) steps in
-build.md, wire it into agent.js, then restart my agent and give me the link.</pre></div>
-<p><strong>Try it:</strong> tell it <em>"my dog's name is Pixel,"</em> restart, open a fresh chat, and ask <em>"what's my dog's name?"</em> — it remembers. 🧠</p>
+<h2>🧠 Memory</h2>
+<details class="cap"><summary><span class="cap-title">🧠 Remember what you tell it</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> keeps facts you mention (people, preferences, decisions) forever. <strong>Switch it on:</strong> tell Claude — <em>"Add the Memory power, follow build.md, then restart my agent."</em> <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-5"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-5">Remember that my dog's name is Pixel.</pre></div>
+<p>…then restart, open a fresh chat, and ask <em>"what's my dog's name?"</em></p>
 </div></details>
-<details class="cap"><summary><span class="cap-title">Iteration 3 · ⏰ Reminders — sends you things later</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
-<ul><li>One-off reminders/messages — <em>"send me a hi at 7:30pm."</em></li><li>Recurring reminders — <em>"every weekday at 9am, nudge me about standup."</em></li><li>Scheduled messages to a channel (once Slack is added).</li></ul>
-<p><strong>Switch it on:</strong></p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-6"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-6">Add the Reminders power to my agent — follow the Reminders (Iteration 3) steps in
-build.md, wire it into agent.js + auto-start from server.js, then restart and
-give me the link.</pre></div>
-<p><strong>Try it</strong> — in your browser chat:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-7"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-7">Send me a hi message in 2 minutes.</pre></div>
+<details class="cap"><summary><span class="cap-title">🧠 Recall relevant context automatically</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> before every reply it quietly pulls up your most relevant past memories, so it never starts from zero. <strong>Switch it on:</strong> needs the <strong>Memory</strong> power (above). <strong>Try it:</strong> nothing to type — just chat. The more history it has, the more it weaves in.</p>
 </div></details>
-<details class="cap"><summary><span class="cap-title">Iteration 4 · 📧 Email — drafts replies in your voice</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
-<ul><li>Summarizes your unread inbox (who wants what, at a glance).</li><li>Drafts replies in your voice (<strong>never sends</strong> — only drafts you review).</li><li>Triages real human mail vs no-reply/marketing noise.</li><li>Drafts a single reply on demand from any message you paste.</li></ul>
-<p><strong>Connect Gmail first (one-time, on the web):</strong> go to <a href="https://claude.ai/customize/connectors" target="_blank" rel="noopener">https://claude.ai/customize/connectors</a> → <strong>Gmail</strong> → <strong>Connect</strong> → sign in → allow read access.</p>
-<p><strong>Switch it on:</strong></p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-8"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-8">Add the Email power to my agent — follow the Email (Iteration 4) steps in build.md.</pre></div>
-<p><strong>Try it</strong> — in your browser chat:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-9"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-9">Read my unread emails and draft replies to the ones a human would reply to, in my
+<details class="cap"><summary><span class="cap-title">🧠 Answer "what did we discuss about X?"</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> searches your own history and tells you what was said. <strong>Switch it on:</strong> needs the <strong>Memory</strong> power. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-6"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-6">What did we discuss about my launch plan?</pre></div>
+</div></details>
+<details class="cap"><summary><span class="cap-title">🧠 Get sharper over time</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> memories you use a lot get kept and prioritised; the noise is forgotten — so recall improves the longer you run it. <strong>Switch it on:</strong> needs the <strong>Memory</strong> power. It then maintains itself.</p>
+</div></details>
+<hr class="rule"/>
+<h2>📧 Email</h2>
+<div class="callout">All four need: <strong>Gmail connected</strong> (one-time — <a href="https://claude.ai/customize/connectors" target="_blank" rel="noopener">https://claude.ai/customize/connectors</a> → Gmail → Connect) <strong>and</strong> the <strong>Email</strong> power (tell Claude <em>"Add the Email power, follow build.md"</em>). It only ever <strong>drafts</strong> — never sends.</div>
+<details class="cap"><summary><span class="cap-title">📧 Summarize your unread inbox</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> a one-glance digest of who wants what. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-7"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-7">Summarize my unread emails.</pre></div>
+</div></details>
+<details class="cap"><summary><span class="cap-title">📧 Draft replies in your voice</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> writes a ready-to-review draft for each email worth answering. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-8"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-8">Read my unread emails and draft replies to the ones a human would reply to, in my
 voice. Save them to a file and tell me where.</pre></div>
 </div></details>
-<details class="cap"><summary><span class="cap-title">📅 Calendar — block time &amp; manage events</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
-<ul><li>Block time — <em>"block 6–8pm today for deep work."</em></li><li>Check availability — <em>"am I free Thursday afternoon?"</em></li><li>Create events — <em>"add a call with Sam tomorrow at 4pm."</em></li></ul>
-<p><strong>Switch it on (one-time, on the web — no code module needed):</strong> go to <a href="https://claude.ai/customize/connectors" target="_blank" rel="noopener">https://claude.ai/customize/connectors</a> → <strong>Google Calendar</strong> → <strong>Connect</strong> → sign in → <strong>Allow</strong> access. Make sure it shows <strong>Connected</strong>.</p>
-<p><strong>Try it</strong> — in your browser chat:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-10"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-10">Block my calendar from 6pm to 8pm today for deep work, and title it "Focus".</pre></div>
+<details class="cap"><summary><span class="cap-title">📧 Triage your inbox</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> separates real human mail from no-reply / marketing noise. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-9"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-9">Go through my inbox and tell me which emails actually need a reply from me.</pre></div>
 </div></details>
-<details class="cap"><summary><span class="cap-title">Iteration 5 (optional) · 💬 Slack — and deploy on Slack</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
-<ul><li>Replies to DMs/mentions in your voice, in-thread.</li><li>Summarizes a busy thread or channel to catch you up.</li><li>Sends a message on demand — <em>"post 'standup in 5' to #general."</em></li><li>Edits or deletes a message it sent.</li></ul>
-<p>This is also where you <strong>deploy</strong> your agent on a real chat app. It needs a Slack account and two tokens, so add it only if you're comfortable / ahead of time.</p>
-<p><strong>Switch it on (this also walks you through deploying):</strong></p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-11"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-11">Add the Slack power to my agent and help me deploy it — follow the Slack
-(Iteration 5) steps in build.md. Walk me step by step through creating the Slack
-app, getting my two tokens, and running it so I can message my agent in Slack.</pre></div>
-<p>When it's done, open Slack, find your app, and DM it. 🎉</p>
+<details class="cap"><summary><span class="cap-title">📧 Draft a single reply on demand</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> paste any message, get one polished reply in your voice. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-10"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-10">Draft a reply to this in my voice: "Hey, are we still on for Thursday at 3?"</pre></div>
 </div></details>
-<details class="cap"><summary><span class="cap-title">🔗 Combined — powers working together</span><span class="cap-chev">›</span></summary><div class="cap-body"><p>Once you've added a few powers, your agent can chain them:</p>
-<ul><li><strong>Read an email → summarize it → remember the key facts</strong> for later.</li><li><strong>Recall what it knows</strong> about a person/topic to write sharper email or Slack replies.</li><li><strong>Scheduled daily digest</strong> — each morning, summarize your unread email (and</li></ul>
-<p>  Slack) and send it to you.</p>
-<p>Just ask — e.g. <em>"every morning at 8am, summarize my unread email and send it to me."</em></p>
+<hr class="rule"/>
+<h2>⏰ Reminders &amp; scheduling</h2>
+<div class="callout">These need the <strong>Reminders</strong> power (tell Claude <em>"Add the Reminders power, follow build.md"</em>). Reminders pop up as a desktop notification while your agent is running.</div>
+<details class="cap"><summary><span class="cap-title">⏰ One-off reminder or message</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> fires a message at a specific time. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-11"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-11">Send me a hi message in 2 minutes.</pre></div>
+</div></details>
+<details class="cap"><summary><span class="cap-title">⏰ Recurring reminder</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> repeats on a schedule. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-12"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-12">Every weekday at 9am, remind me about standup.</pre></div>
+</div></details>
+<details class="cap"><summary><span class="cap-title">⏰ Scheduled message to a channel</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> posts a message later (delivered to Slack if you've added the Slack power, otherwise as a notification). <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-13"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-13">Tomorrow at 8am, send me a short hype message to start the day.</pre></div>
+</div></details>
+<hr class="rule"/>
+<h2>📅 Calendar</h2>
+<div class="callout">These need <strong>Google Calendar connected</strong> (one-time — <a href="https://claude.ai/customize/connectors" target="_blank" rel="noopener">https://claude.ai/customize/connectors</a> → Google Calendar → Connect). No module to add — once it's connected, just ask.</div>
+<details class="cap"><summary><span class="cap-title">📅 Block time on your calendar</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> creates a busy block so people can't book over you. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-14"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-14">Block my calendar from 6pm to 8pm today for deep work, titled "Focus".</pre></div>
+</div></details>
+<details class="cap"><summary><span class="cap-title">📅 Check your availability</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> tells you when you're free. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-15"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-15">Am I free Thursday afternoon?</pre></div>
+</div></details>
+<details class="cap"><summary><span class="cap-title">📅 Create an event</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> adds a meeting/event to your calendar. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-16"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-16">Add a call with Sam tomorrow at 4pm for 30 minutes.</pre></div>
+</div></details>
+<hr class="rule"/>
+<h2>💬 Slack</h2>
+<div class="callout">These need the <strong>Slack</strong> power (tell Claude <em>"Add the Slack power and help me deploy, follow build.md"</em>) — it walks you through creating a Slack app and two tokens. This is also how you <strong>deploy</strong> your agent on Slack.</div>
+<details class="cap"><summary><span class="cap-title">💬 Reply to DMs and mentions in your voice</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> people message your agent in Slack and it replies in-thread, as you. <strong>Try it:</strong> in Slack, find your app and <strong>DM it</strong> — it answers in your voice.</p>
+</div></details>
+<details class="cap"><summary><span class="cap-title">💬 Summarize a thread or channel</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> catches you up on a busy conversation. <strong>Try it:</strong> in Slack, <em>"@your-agent summarize this thread for me."</em></p>
+</div></details>
+<details class="cap"><summary><span class="cap-title">💬 Send a message on demand</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> posts a message to a channel or person for you. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-17"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-17">Post "standup in 5 minutes 🙌" to #general.</pre></div>
+</div></details>
+<details class="cap"><summary><span class="cap-title">💬 Edit or delete a message it sent</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> fixes or removes a message your agent posted. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-18"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-18">Change that last message to 10 minutes — actually, delete it.</pre></div>
+</div></details>
+<hr class="rule"/>
+<h2>🔗 Combined — powers working together</h2>
+<details class="cap"><summary><span class="cap-title">🔗 Read an email → summarize → remember it</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> turns an email into a saved memory you can recall later. <strong>Needs:</strong> the <strong>Email</strong> + <strong>Memory</strong> powers. <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-19"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-19">Summarize my unread emails and remember anything important for later.</pre></div>
+</div></details>
+<details class="cap"><summary><span class="cap-title">🔗 Recall context to write sharper replies</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> folds what it knows about a person/topic into the reply it drafts. <strong>Needs:</strong> <strong>Memory</strong> + <strong>Email</strong> (or <strong>Slack</strong>). Happens automatically when it drafts.</p>
+</div></details>
+<details class="cap"><summary><span class="cap-title">🔗 Scheduled daily digest</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> every morning, summarizes your unread email (and Slack) and sends it to you. <strong>Needs:</strong> <strong>Reminders</strong> + <strong>Email</strong> (and <strong>Slack</strong> for the Slack part). <strong>Try it:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-20"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-20">Every morning at 8am, summarize my unread email and send it to me.</pre></div>
 </div></details>
 <hr class="rule"/>
 <h2>Module repos (for reference / manual copy)</h2>
@@ -335,7 +366,7 @@ app, getting my two tokens, and running it so I can message my agent in Slack.</
 <hr class="rule"/>
 <h2>Quick polish first</h2>
 <p>Send your agent 3–4 messages and read the replies out loud. If anything feels off, fix it in one line:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-12"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-12">My agent's replies feel a bit [too long / too formal / not funny enough]. Tweak
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-21"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-21">My agent's replies feel a bit [too long / too formal / not funny enough]. Tweak
 my-agent/PERSONALITY.md to fix that, then I'll test again.</pre></div>
 <p>(No restart needed — personality updates instantly.)</p>
 <hr class="rule"/>
@@ -365,7 +396,7 @@ Then show your wow moment (memory / reminder / calendar / email).
 <p>  knows it's a real build.</p>
 <hr class="rule"/>
 <h2>Prep your script with Claude (optional)</h2>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-13"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-13">Help me write a tight, honest demo script for my agent. Its name is [name], it
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-22"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-22">Help me write a tight, honest demo script for my agent. Its name is [name], it
 [what it does], and the coolest thing it does is [memory / reminders / calendar /
 email]. Give me my opening line, what to show, and a strong closing line.</pre></div>
 <hr class="rule"/>
@@ -378,7 +409,7 @@ email]. Give me my opening line, what to show, and a strong closing line.</pre><
 <p>Nothing here is scary. Almost everything is fixed the same way: <strong>tell Claude what happened and let it fix it.</strong> You built this by talking; you fix it by talking too.</p>
 <h2>The one move that fixes most things</h2>
 <p>If you see a scary red message anywhere, copy the whole thing and paste:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude (with the message)</span><button class="copy-btn" data-copy="prompt-14"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-14">Something went wrong and I got this — please explain it simply and fix it for me:
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude (with the message)</span><button class="copy-btn" data-copy="prompt-23"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-23">Something went wrong and I got this — please explain it simply and fix it for me:
 
 [paste the entire message here]</pre></div>
 <p>Then try again. Repeat if needed. This back-and-forth <strong>is</strong> building. Stay calm.</p>
