@@ -7,6 +7,9 @@ opens your agent in your browser.
 > Make sure you finished **Ideate** first — this step uses the `ideation.md` it
 > created.
 
+This is **Iteration 1: your web interface.** Once your agent is chatting in your
+voice, you'll build it up power-by-power in **Iterations 2–5** on the next page.
+
 ---
 
 ## The Build prompt
@@ -61,8 +64,8 @@ my-agent/PERSONALITY.md to be more [what you want], then I'll test again.
 
 ---
 
-## What you have now
+## Iteration 1 complete ✅
 
 A real agent that **chats like you** and **remembers the conversation**, running
-in your browser. That's the core. Next, give it real powers. 👉 Go to
-**Capabilities**.
+in your browser. That's the foundation. Now build it up in iterations — 👉 go to
+**Capabilities** for **Iteration 2** onward.
