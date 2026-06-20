@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Build Your Personal AI Agent · Handbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){try{if(localStorage.getItem('gx-hb-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+<style>
+:root{
+  --bg:#08090d; --panel:#11131a; --card:rgba(255,255,255,.04); --card-h:rgba(255,255,255,.07);
+  --ink:#f5f6f8; --ink-dim:rgba(245,246,248,.80); --ink-mut:rgba(245,246,248,.60); --ink-soft:rgba(245,246,248,.40);
+  --rule:rgba(255,255,255,.12); --rule-2:rgba(255,255,255,.20);
+  --accent:#6d8bff; --accent-2:#a779ff; --accent-soft:rgba(109,139,255,.14); --accent-bd:rgba(109,139,255,.4);
+  --good:#34d399; --warn:#ff6b6b;
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Inter',-apple-system,system-ui,sans-serif; --mono:'DM Mono',ui-monospace,monospace;
+  --r:12px;
+}
+:root[data-theme="light"]{
+  --bg:#f6f7f9; --panel:#fff; --card:rgba(0,0,0,.035); --card-h:rgba(0,0,0,.06);
+  --ink:#0b0c10; --ink-dim:rgba(11,12,16,.82); --ink-mut:rgba(11,12,16,.62); --ink-soft:rgba(11,12,16,.42);
+  --rule:rgba(0,0,0,.10); --rule-2:rgba(0,0,0,.18);
+  --accent-soft:rgba(109,139,255,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(1100px 600px at 80% -8%,rgba(167,121,255,.10),transparent 60%),radial-gradient(900px 500px at 10% -5%,rgba(109,139,255,.10),transparent 55%),var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;padding:12px 22px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.brand{font-weight:800;letter-spacing:-.02em;font-size:15px;display:flex;align-items:center;gap:8px}
+.brand .bot{font-size:18px}
+.nav{display:flex;gap:4px;margin-left:6px;flex-wrap:wrap}
+.nav-link{font-size:13px;color:var(--ink-mut);padding:6px 11px;border-radius:999px;font-weight:500}
+.nav-link:hover{color:var(--ink);background:var(--card);text-decoration:none}
+.nav-link.active{color:var(--ink);background:var(--accent-soft);border:1px solid var(--accent-bd)}
+.theme-btn{margin-left:auto;background:var(--card);border:1px solid var(--rule);color:var(--ink);border-radius:999px;padding:7px 13px;font-size:12px;font-family:var(--mono);cursor:pointer}
+.theme-btn:hover{background:var(--card-h)}
+
+/* hero */
+.hero{max-width:820px;margin:0 auto;padding:78px 24px 26px;text-align:center}
+.hero .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,72px);line-height:1.04;letter-spacing:-.01em;margin-bottom:18px}
+.hero h1 .g{background:linear-gradient(120deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;color:var(--ink-mut);max-width:620px;margin:0 auto}
+
+/* layout */
+main{max-width:820px;margin:0 auto;padding:10px 24px 120px}
+.section{padding:48px 0;border-top:1px solid var(--rule)}
+.page-num{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+h1,h2,h3,h4{letter-spacing:-.01em;line-height:1.25}
+.section h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.6vw,44px);margin:6px 0 18px}
+.section h2{font-size:23px;font-weight:700;margin:38px 0 12px}
+.section h3{font-size:18px;font-weight:700;margin:28px 0 10px;color:var(--ink-dim)}
+.section h4{font-size:15px;font-weight:700;margin:20px 0 8px;color:var(--ink-mut)}
+p{color:var(--ink-dim);margin:12px 0}
+ul,ol{margin:12px 0 12px 24px;color:var(--ink-dim)}
+li{margin:6px 0}
+strong{color:var(--ink);font-weight:700}
+code{font-family:var(--mono);font-size:.86em;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:1px 6px}
+hr.rule{border:none;border-top:1px solid var(--rule);margin:34px 0}
+
+/* tables */
+.table-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--rule);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-mut);background:var(--card)}
+tr:last-child td{border-bottom:none}
+td code{font-size:.82em;word-break:break-all}
+
+/* callout */
+.callout{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:10px;padding:14px 18px;margin:18px 0;color:var(--ink-dim);font-size:15px}
+
+/* plain code block */
+pre.code{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;overflow-x:auto;margin:16px 0}
+pre.code code{background:none;border:none;padding:0;font-size:13px;color:var(--ink-dim);line-height:1.6}
+
+/* prompt block */
+.prompt-block{margin:20px 0 30px;border:1px solid var(--accent-bd);border-radius:var(--r);overflow:hidden;background:var(--accent-soft)}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 16px;border-bottom:1px solid var(--rule);background:color-mix(in srgb,var(--accent) 9%,transparent)}
+.prompt-label{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.copy-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--accent);border:none;color:#fff;border-radius:7px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.18s}
+.copy-btn:hover{filter:brightness(1.1)}
+.copy-btn.copied{background:var(--good)}
+.prompt-body{margin:0;padding:20px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink);white-space:pre-wrap;word-break:break-word;background:var(--panel)}
+
+footer{max-width:820px;margin:0 auto;padding:30px 24px 80px;color:var(--ink-soft);font-size:13px;text-align:center;border-top:1px solid var(--rule)}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand"><span class="bot">🤖</span> Personal AI Agent</div>
+  <nav class="nav"><a href="#welcome" class="nav-link" data-target="welcome">Welcome</a><a href="#ideate" class="nav-link" data-target="ideate">Ideate</a><a href="#build" class="nav-link" data-target="build">Build</a><a href="#demo" class="nav-link" data-target="demo">Demo</a><a href="#help" class="nav-link" data-target="help">Help</a></nav>
+  <button class="theme-btn" id="themeBtn">◑ Light</button>
+</div>
+<div class="hero">
+  <div class="kicker">Buildathon · Builder Handbook</div>
+  <h1>Build your <span class="g">personal AI agent</span> — today.</h1>
+  <p>An AI version of you that chats in your voice, runs in your browser, and you build it by pasting prompts. No coding required.</p>
+</div>
+<main>
+<section id="welcome" class="section">
+<div class="page-num">00 · Welcome</div>
+<h1>Welcome — you're going to build your own AI</h1>
+<p>By the end of today you'll have a <strong>little AI version of you</strong> — an agent that chats in <em>your</em> voice, runs on <em>your</em> laptop, and opens right in your <strong>web browser</strong> like any website. Then you'll show it on the big screen.</p>
+<p>You do <strong>not</strong> need to know how to code. Really. You'll build the whole thing by typing normal sentences to an AI helper, and it does the typing-of-code for you.</p>
+<hr class="rule"/>
+<h2>What you'll end up with</h2>
+<p>A chat window in your browser where you talk to your agent. It will:</p>
+<ul><li>💬 <strong>Talk like you</strong> — your tone, your humour, your vibe.</li><li>🧠 <strong>Remember you</strong> — things you tell it stick around.</li><li>📧 <strong>Help with email</strong> — read your inbox and write replies in your voice.</li><li>⏰ <strong>Remind you</strong> — "ping me at 7pm" and it does.</li></ul>
+<p>You'll get all of this without writing code yourself.</p>
+<hr class="rule"/>
+<h2>The day, in three simple phases</h2>
+<div class="table-wrap"><table><thead><tr><th>Phase</th><th>Time</th><th>What you do</th></tr></thead><tbody><tr><td>1. <strong>Ideate</strong></td><td>~20 min</td><td>Decide who your agent <em>is</em> — its name and personality.</td></tr><tr><td>2. <strong>Build</strong></td><td>~2 hours</td><td>Bring it to life in your browser and give it its powers.</td></tr><tr><td>3. <strong>Demo</strong></td><td>~15 min</td><td>Show it off on the big screen.</td></tr></tbody></table></div>
+<div class="callout">One rule that makes today work: <strong>you talk, the AI builds.</strong> When something<br/>breaks, you don't fix it by hand — you tell the AI and it fixes it.</div>
+<hr class="rule"/>
+<h2>First, two words you'll see a lot</h2>
+<p>You'll be using an AI helper called <strong>Claude Code</strong> (or <strong>Codex</strong> — same idea). Think of it as a <strong>super-smart assistant that lives in a little text box on your computer and can actually do things</strong> — create files, run your agent, fix mistakes — just by you asking in plain English.</p>
+<ul><li><strong>The "terminal"</strong> = that text box where you type to Claude. That's it. It looks</li></ul>
+<p>  plain, but it's just a place to chat. Don't be scared of it.</p>
+<ul><li><strong>A "prompt"</strong> = a message you paste to Claude. Throughout this handbook, every</li></ul>
+<p>  step gives you a prompt to <strong>copy and paste</strong>. That's how you build.</p>
+<p>If you can send a text message, you can do this.</p>
+<hr class="rule"/>
+<h2>Get ready (about 10 minutes, ideally before you arrive)</h2>
+<p>You only need a few things installed. If you're stuck, grab a mentor — this part is the boring bit, and then the fun starts.</p>
+<ol><li><strong>A code editor</strong> — install <strong>VS Code</strong> (free): <a href="https://code.visualstudio.com" target="_blank" rel="noopener">https://code.visualstudio.com</a></li><li><strong>Node.js</strong> (this runs your agent) — the LTS version: <a href="https://nodejs.org" target="_blank" rel="noopener">https://nodejs.org</a></li><li><strong>Git</strong> (this downloads the starter) — <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></li><li><strong>Claude Code</strong> — open VS Code, open the terminal (top menu → **Terminal → New</li></ol>
+<p>   Terminal**), and type:</p>
+<pre class="code"><code>   npm install -g @anthropic-ai/claude-code</code></pre>
+<p>   Then type <code>claude</code> and sign in when the browser opens. (Codex users:    <code>npm install -g @openai/codex</code>, then <code>codex login</code>.)</p>
+<div class="callout">✅ You're ready when you can type <code>claude</code> in the terminal and it starts.</div>
+<hr class="rule"/>
+<h2>Get the starter (your agent's body)</h2>
+<p>We've pre-built the hard parts so you can focus on making the agent <em>yours</em>. In your terminal, start Claude (type <code>claude</code> and press Enter), then paste:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-0"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-0">Please download my agent starter so I can build on it. Run this for me:
+git clone https://github.com/luvishg-growthx/personal-ai-agent-starter my-agent
+Then open the my-agent folder and tell me, in one friendly line, that it's ready.</pre></div>
+<p>Now you have a folder called <strong>my-agent</strong> with everything inside — <strong>including the <code>ideation.md</code> and <code>build.md</code> guides</strong>, so they're right there in your project to follow along (your AI can read them too).</p>
+<p><strong>Want the guides on their own?</strong> Download them manually:</p>
+<ul><li><code>ideation.md</code> → <a href="https://raw.githubusercontent.com/luvishg-growthx/personal-ai-agent-starter/main/ideation.md" target="_blank" rel="noopener">https://raw.githubusercontent.com/luvishg-growthx/personal-ai-agent-starter/main/ideation.md</a></li><li><code>build.md</code> → <a href="https://raw.githubusercontent.com/luvishg-growthx/personal-ai-agent-starter/main/build.md" target="_blank" rel="noopener">https://raw.githubusercontent.com/luvishg-growthx/personal-ai-agent-starter/main/build.md</a></li></ul>
+<p>…or have Claude drop them into your current folder:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-1"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-1">Download these two guides into my current folder so I can follow them:
+curl -O https://raw.githubusercontent.com/luvishg-growthx/personal-ai-agent-starter/main/ideation.md
+curl -O https://raw.githubusercontent.com/luvishg-growthx/personal-ai-agent-starter/main/build.md
+Then tell me they're saved.</pre></div>
+<p>Next: give it a personality. 👉 Go to <strong>Ideation</strong>.</p>
+
+</section>
+<section id="ideate" class="section">
+<div class="page-num">01 · Ideate</div>
+<h1>Phase 1 — Ideate (about 20 minutes)</h1>
+<p>Before any building, decide <strong>who your agent is</strong>: its <strong>name</strong> and its <strong>personality</strong>. That personality is the single most important thing — it's what makes the agent feel like <em>you</em> and not a robot.</p>
+<p>This phase is quick on purpose. Don't overthink it. In ~20 minutes you'll walk away with a finished personality and a name.</p>
+<div class="callout">No code here. You're just having a short chat with Claude about how you talk.</div>
+<hr class="rule"/>
+<h2>Pick a starting vibe (optional, but it speeds things up)</h2>
+<p>Don't start from a blank page. Skim these and pick the one closest to you — your agent can be a mix, and you'll tweak it in a second.</p>
+<div class="table-wrap"><table><thead><tr><th>Vibe</th><th>Sounds like…</th></tr></thead><tbody><tr><td>😎 <strong>The Witty Sidekick</strong></td><td>Quick, playful, a joke in every reply, but always helpful</td></tr><tr><td>🔥 <strong>The Hype Friend</strong></td><td>Warm, encouraging, hypes you up, lots of energy + emojis</td></tr><tr><td>🧘 <strong>The Calm Mentor</strong></td><td>Steady, thoughtful, kind, never rushed</td></tr><tr><td>💼 <strong>The Sharp Professional</strong></td><td>Crisp, confident, polished — friendly but to the point</td></tr><tr><td>🤗 <strong>The Warm Bestie</strong></td><td>Casual, caring, talks like your closest friend</td></tr><tr><td>😏 <strong>The Deadpan Comedian</strong></td><td>Dry, sarcastic, understated, secretly very competent</td></tr></tbody></table></div>
+<p>Remember the one you like (or "a mix of Hype Friend + Witty Sidekick"). You'll hand it to Claude in the prompt below.</p>
+<hr class="rule"/>
+<h2>Do it: the Ideation prompt</h2>
+<p>Make sure Claude is running <strong>inside your <code>my-agent</code> folder</strong> (from the Welcome step). Then paste this:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-2"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-2">You are helping me design the PERSONALITY of my personal AI agent — a little AI
+version of me that I'll chat with in my browser. Your ONLY job right now is to
+figure out how I talk and write it down. Do NOT write any code.
+
+Keep this FAST — we have about 20 minutes. Follow these rules:
+- Ask me a SHORT set of quick questions, ONE or TWO at a time, mostly
+  multiple-choice so I can answer in a word. Aim for 5–6 questions TOTAL, then
+  stop. Do not interview me forever.
+- Start by asking which "vibe" fits me best (e.g. Witty Sidekick, Hype Friend,
+  Calm Mentor, Sharp Professional, Warm Bestie, Deadpan Comedian — or a mix).
+- Then ask only what you still need: how formal/casual, how much humour, emojis
+  or not, a couple of words/phrases I actually say, and one thing my agent
+  should NEVER do.
+- Also help me NAME my agent — suggest 3 names based on my answers, or use mine.
+
+When you have enough (don't drag it out), do ALL of this:
+1. Write my answers into the PERSONALITY.md file in this folder — a short, vivid
+   description written as "You are ..." that captures my voice.
+2. Put my agent's NAME in PERSONALITY.md, and also set it as the title/name shown
+   in public/index.html (replace "Your Agent" everywhere).
+3. Show me the finished PERSONALITY.md and tell me my agent's name.
+
+Begin by greeting me and asking your first question.</pre></div>
+<hr class="rule"/>
+<h2>You're done with ideation when…</h2>
+<ul><li>☐ Your agent has a <strong>name</strong> you like.</li><li>☐ Your <strong><code>PERSONALITY.md</code></strong> is filled in (Claude wrote it for you).</li><li>☐ It took about 20 minutes — not an hour. If Claude keeps asking questions,</li></ul>
+<p>      tell it: <em>"that's enough, write my PERSONALITY.md now."</em></p>
+<div class="callout">💡 Don't aim for perfect. You'll hear your agent talk in a few minutes and can<br/>tweak the personality any time — it updates instantly.</div>
+<p>👉 Next: <strong>Build</strong> — bring it to life in your browser.</p>
+
+</section>
+<section id="build" class="section">
+<div class="page-num">02 · Build</div>
+<h1>Phase 2 — Build (about 2 hours)</h1>
+<p>Bring your agent to life in the browser, then give it powers — one at a time. Each power is a <strong>ready-made module</strong>; you add it by pasting a prompt that tells Claude to fetch it and wire it into your agent. After each step, <strong>talk to your agent to test it</strong>. If anything breaks, paste the error to Claude and let it fix it.</p>
+<div class="callout">Everything here is <strong>copy-paste prompts</strong>. You never write code or type scary<br/>commands — you ask, Claude does.</div>
+<hr class="rule"/>
+<h2>📂 For your AI helper — how this project is named (paste this ONCE first)</h2>
+<p>This makes sure Claude never gets confused when it adds powers later.</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-3"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-3">For everything we do in this project, use these names exactly:
+- PERSONALITY.md = my agent's voice.
+- agent.js = the BRAIN — the only file that talks to the AI. Every power wires into here.
+- server.js = runs my agent's website.
+- public/ = the browser chat page.
+When I later paste a module's guide to add a power, follow it but ADAPT it to my
+project: anywhere it says "twin.js" it means agent.js; anywhere it says
+"CLAUDE.md" or "PERSONA.md" it means PERSONALITY.md. Always wire the power into
+agent.js — never create a second brain file or a separate terminal app. Confirm
+you understand in one line.</pre></div>
+<hr class="rule"/>
+<h2>📦 The power modules (links — copy any of these)</h2>
+<p>Each power lives in its own repo. The prompts below clone them for you, but here are the links if you want to open or copy them yourself:</p>
+<div class="table-wrap"><table><thead><tr><th>Power</th><th>Repo link</th><th>Clone command</th></tr></thead><tbody><tr><td>🧠 Memory</td><td>https://github.com/luvishg-growthx/long-term-memory-engram-setup-guide-for-your-ai-agent</td><td><code>git clone https://github.com/luvishg-growthx/long-term-memory-engram-setup-guide-for-your-ai-agent</code></td></tr><tr><td>📧 Email</td><td>https://github.com/luvishg-growthx/reading-your-emails-and-drafting-a-reply-for-them-setup-guide-for-your-ai-agent</td><td><code>git clone https://github.com/luvishg-growthx/reading-your-emails-and-drafting-a-reply-for-them-setup-guide-for-your-ai-agent</code></td></tr><tr><td>⏰ Scheduler</td><td>https://github.com/luvishg-growthx/cronjobs-and-reminders-setup-guide-for-your-ai-agent</td><td><code>git clone https://github.com/luvishg-growthx/cronjobs-and-reminders-setup-guide-for-your-ai-agent</code></td></tr><tr><td>💬 Slack (optional)</td><td>https://github.com/luvishg-growthx/upgrading-your-bot-to-being-a-slack-bot</td><td><code>git clone https://github.com/luvishg-growthx/upgrading-your-bot-to-being-a-slack-bot</code></td></tr></tbody></table></div>
+<hr class="rule"/>
+<h2>Iteration 0 — see your agent talk (your magic moment)</h2>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-4"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-4">Start my agent's website in the background, then tell me the exact link to open
+in my browser. Keep it running so I can chat with it.</pre></div>
+<p>Claude gives you a link like <strong>http://localhost:3000</strong>. Open it → you'll see a chat box. <strong>Say hi.</strong> It should answer in <em>your</em> voice. 🎉</p>
+<p>Doesn't sound like you yet?</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-5"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-5">That reply didn't sound like me — it was too [formal / stiff / generic]. Update
+PERSONALITY.md to be more [what you want], then I'll test again.</pre></div>
+<div class="callout">💾 <strong>Save your progress.</strong> Paste <code>checkpoint</code> and Claude saves your work so you<br/>can always come back to this point.</div>
+<hr class="rule"/>
+<h2>Iteration 1 — give it memory 🧠</h2>
+<p>This adds long-term memory so your agent remembers things <strong>forever</strong>, across every chat (not just the current one).</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-6"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-6">Add long-term memory to my agent. First clone the module, then follow its guide:
+git clone https://github.com/luvishg-growthx/long-term-memory-engram-setup-guide-for-your-ai-agent memory-module
+Read memory-module's guide and do everything it needs (including any installs),
+wiring it INTO agent.js — its "twin.js" means my agent.js, its "CLAUDE.md" /
+"PERSONA.md" mean my PERSONALITY.md. Don't make a second brain file. When it's
+wired in, delete the memory-module folder, restart my agent in the background,
+and give me the link.</pre></div>
+<p><strong>Test it:</strong> tell your agent something ("my dog's name is Pixel"). Then ask Claude to <em>"restart my agent"</em>, open a fresh chat, and ask <em>"what's my dog's name?"</em> — it should remember. 🧠</p>
+<div class="callout">💾 Paste <code>checkpoint</code></div>
+<hr class="rule"/>
+<h2>Iteration 2 — let it help with email 📧</h2>
+<p>Your agent reads your unread Gmail and <strong>drafts replies in your voice</strong> (it never sends — only writes drafts you can check).</p>
+<p><strong>Step A — connect Gmail (one-time, on the web):</strong></p>
+<ol><li>Go to <strong><a href="https://claude.ai/customize/connectors" target="_blank" rel="noopener">https://claude.ai/customize/connectors</a></strong></li><li>Find <strong>Gmail</strong> → <strong>Connect</strong> → sign in → allow read access.</li></ol>
+<p><strong>Step B — add the power:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-7"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-7">Add the email reply-drafting power to my agent. First clone the module, then
+follow its guide:
+git clone https://github.com/luvishg-growthx/reading-your-emails-and-drafting-a-reply-for-them-setup-guide-for-your-ai-agent email-module
+Read email-module's guide and set it up for my agent (its "twin.js" = my
+agent.js, "CLAUDE.md"/"PERSONA.md" = my PERSONALITY.md). Delete the email-module
+folder when done.</pre></div>
+<p><strong>Test it</strong> — in your browser chat, say:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-8"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-8">Read my unread emails and draft replies to the ones a human would actually
+reply to, in my voice. Save the drafts to a file and tell me where.</pre></div>
+<div class="callout">💾 Paste <code>checkpoint</code></div>
+<hr class="rule"/>
+<h2>Iteration 3 — give it a sense of time ⏰</h2>
+<p>Now your agent can remind you and send you messages later.</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-9"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-9">Add the scheduler/reminders power to my agent. First clone the module, then
+follow its guide:
+git clone https://github.com/luvishg-growthx/cronjobs-and-reminders-setup-guide-for-your-ai-agent scheduler-module
+Read scheduler-module's guide and wire it into my agent — its "twin.js" = my
+agent.js; make the scheduler auto-start from my server.js so reminders fire
+whenever my agent runs. Delete the scheduler-module folder when done, then
+restart my agent in the background and give me the link.</pre></div>
+<p><strong>Test it</strong> — in your browser chat, say:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-10"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-10">Send me a hi message in 2 minutes.</pre></div>
+<p>About two minutes later a reminder pops up on your screen, in your voice. 🎉</p>
+<div class="callout">💾 Paste <code>checkpoint</code></div>
+<hr class="rule"/>
+<h2>Optional / advanced — put your agent on Slack 💬</h2>
+<p>Want to message your agent from Slack too?</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-11"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-11">Add the Slack power to my agent (optional/advanced). First clone the module, then
+follow its guide:
+git clone https://github.com/luvishg-growthx/upgrading-your-bot-to-being-a-slack-bot slack-module
+Read slack-module's guide and wire Slack into my agent alongside my website (its
+"twin.js" = my agent.js) — don't replace my website. Walk me through any accounts
+or tokens I need. Delete the slack-module folder when done.</pre></div>
+<p>This needs a Slack account and a couple of tokens, so do it only if you're ahead of time. Otherwise, polish what you have.</p>
+<hr class="rule"/>
+<h2>You've built a real agent ✅</h2>
+<p>It chats like you, remembers you, helps with email, and reminds you — all in your browser. Now make it shine on stage. 👉 Go to <strong>Demo</strong>.</p>
+<div class="callout">🛟 Stuck? Don't struggle alone — paste the exact error to Claude, or grab a<br/>mentor.</div>
+
+</section>
+<section id="demo" class="section">
+<div class="page-num">03 · Demo</div>
+<h1>Phase 3 — Demo (about 15 minutes)</h1>
+<p>You built a real AI agent. Last step: show it on the big screen. Keep it short, honest, and live — a real reply in your voice is the whole point.</p>
+<hr class="rule"/>
+<h2>Quick polish first</h2>
+<p>Send your agent 3–4 messages and read the replies out loud. If anything feels off, fix it in one line:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-12"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-12">My agent's replies feel a bit [too long / too formal / not funny enough]. Tweak
+PERSONALITY.md to fix that, then I'll test again.</pre></div>
+<p>(No restart needed — personality updates instantly.)</p>
+<hr class="rule"/>
+<h2>Set up a "wow" moment (do this before you go up)</h2>
+<p>The best demos show the agent <strong>doing something</strong>, not just chatting. Pick one and pre-load it so it lands on stage:</p>
+<ul><li>🧠 <strong>Memory:</strong> earlier in a chat, tell it a fact about you. On stage, open a</li></ul>
+<p>  fresh chat and ask it to recall that fact. (It remembers!)</p>
+<ul><li>⏰ <strong>Reminder:</strong> before you walk up, schedule a message for ~1 minute into your</li></ul>
+<p>  demo — so it pops up live while you're talking.</p>
+<ul><li>📧 <strong>Email:</strong> have it draft a reply to a real email and show how it sounds like you.</li></ul>
+<hr class="rule"/>
+<h2>Get on the big screen</h2>
+<ol><li>Connect your laptop to the screen/projector (HDMI or whatever's provided).</li><li>Have your agent <strong>already running</strong> and open in the browser, full-screen.</li><li>Make the text bigger so the room can read it (zoom in: <strong>Cmd/Ctrl</strong> and <strong>+</strong>).</li></ol>
+<div class="callout">Test the screen connection before it's your turn. Have your first message ready<br/>to type.</div>
+<hr class="rule"/>
+<h2>The 3-minute demo</h2>
+<p>Keep it to about a minute of talking + showing:</p>
+<pre class="code"><code>0:00–0:30   "Hi, I'm [you]. This is [agent name] — it's an AI version of me."
+0:30–0:45   "It [what it does], for [who — usually: me]."
+0:45–2:30   Show it LIVE: send a real message, let the room see the reply.
+            Then show your wow moment (memory / reminder / email).
+2:30–3:00   "What I'd add next: [one idea]." Done.</code></pre>
+<p><strong>Tips</strong></p>
+<ul><li>Show the real thing — don't read a script or fake it.</li><li>Have a backup line if something lags: <em>"while it thinks — here's what it's doing…"</em></li><li>If something breaks, stay calm and talk about what you built. Everyone here</li></ul>
+<p>  knows it's a few-hour build.</p>
+<hr class="rule"/>
+<h2>Prep your script with Claude (optional)</h2>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-13"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-13">Help me write a tight 3-minute demo script for my agent. Its name is [name], it
+[what it does], and the coolest thing it does is [memory / reminders / email].
+Keep it punchy and honest. Give me my opening line, what to show, and a strong
+closing line.</pre></div>
+<hr class="rule"/>
+<p><strong>You built a real personal AI agent today. Go show it off.</strong> 🚀</p>
+
+</section>
+<section id="help" class="section">
+<div class="page-num">04 · Help</div>
+<h1>🆘 When something breaks (it will — that's normal)</h1>
+<p>Nothing here is scary. Almost everything is fixed the same way: <strong>tell Claude what happened and let it fix it.</strong> You built this by talking; you fix it by talking too.</p>
+<h2>The one move that fixes most things</h2>
+<p>If you see a scary red message anywhere, copy the whole thing and paste:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude (with the message)</span><button class="copy-btn" data-copy="prompt-14"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-14">Something went wrong and I got this — please explain it simply and fix it for me:
+
+[paste the entire message here]</pre></div>
+<p>Then try again. Repeat if needed. This back-and-forth <strong>is</strong> building. Stay calm.</p>
+<hr class="rule"/>
+<h2>Common hiccups</h2>
+<p><strong>"My browser link won't open / page won't load."</strong> Your agent probably isn't running. Paste to Claude: <em>"start my agent in the background and give me the link."</em> Then click the fresh link.</p>
+<p><strong>"It says the address is already in use."</strong> Something's already running on that door. Paste: <em>"my agent's port is busy — start it on a different port and give me the new link."</em></p>
+<p><strong>"It doesn't sound like me."</strong> That's not a bug — it's the personality. Paste: <em>"update my PERSONALITY.md to be more [funny / casual / blunt / warm]"</em> and test again. (No restart needed.)</p>
+<p><strong>"command not found" or "claude is not recognized."</strong> The tool isn't installed yet, or the terminal needs a restart. <strong>Close your editor and open it again</strong>, then try once more. Still stuck? Grab a mentor.</p>
+<p><strong>"It stopped replying / usage limit reached."</strong> Switch to a lighter model — type <code>/model sonnet</code> to Claude — and keep your test messages short. Limits refill over time, so take a short break if needed.</p>
+<p><strong>"It can't read my email."</strong> Gmail isn't connected. Go to <strong>claude.ai/customize/connectors</strong>, connect <strong>Gmail</strong>, then try again in a fresh chat.</p>
+<p><strong>"My reminder never popped up."</strong> Your agent has to be running for reminders to fire. Make sure it's still going (<em>"is my agent still running?"</em>), and check that you allowed notifications on your laptop.</p>
+<p><strong>"I think I broke everything."</strong> Don't panic. Paste: <em>"take me back to my last checkpoint — the last working version."</em> That's what the checkpoints were for.</p>
+<hr class="rule"/>
+<h2>Still stuck after 15 minutes?</h2>
+<p><strong>Raise your hand.</strong> A mentor will help. Don't lose an hour to something a fresh pair of eyes fixes in two minutes — that's exactly what mentors are here for. 🙂</p>
+
+</section>
+
+</main>
+<footer>Made for builders. Talk to your AI, build something real. 🚀</footer>
+<script>
+(function(){
+  // theme
+  var root=document.documentElement;
+  try{ if(localStorage.getItem('gx-hb-theme')==='light') root.setAttribute('data-theme','light'); }catch(e){}
+  var btn=document.getElementById('themeBtn');
+  function lbl(){ btn.textContent = root.getAttribute('data-theme')==='light' ? '◐ Dark' : '◑ Light'; }
+  lbl();
+  btn.addEventListener('click',function(){
+    var l=root.getAttribute('data-theme')==='light';
+    if(l){root.removeAttribute('data-theme');try{localStorage.setItem('gx-hb-theme','dark')}catch(e){}}
+    else{root.setAttribute('data-theme','light');try{localStorage.setItem('gx-hb-theme','light')}catch(e){}}
+    lbl();
+  });
+  // copy
+  document.querySelectorAll('.copy-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var pre=document.getElementById(b.getAttribute('data-copy'));
+      navigator.clipboard.writeText(pre.innerText).then(function(){
+        b.classList.add('copied'); b.querySelector('span').textContent='Copied ✓';
+        setTimeout(function(){b.classList.remove('copied'); b.querySelector('span').textContent='Copy';},1600);
+      });
+    });
+  });
+  // active nav
+  var links=[].slice.call(document.querySelectorAll('.nav-link'));
+  var map={}; links.forEach(function(l){map[l.dataset.target]=l;});
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active')}); if(map[e.target.id]) map[e.target.id].classList.add('active'); }});
+  },{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('.section').forEach(function(s){obs.observe(s)});
+})();
+</script>
+</body>
+</html>
