@@ -5,9 +5,10 @@ Before any building, decide **who your agent is**: its **name** and its
 makes the agent feel like *you* and not a robot.
 
 Keep it light. You'll have a short chat with Claude about how you talk, and it
-saves the result to a file your agent will use in the next phase.
+writes the result into your agent's `PERSONALITY.md`.
 
-> No code here. Just a quick conversation about your voice.
+> No code here. Just a quick conversation about your voice. (Your starter already
+> includes a short `ideation.md` guide — Claude follows it for you.)
 
 ---
 
@@ -25,48 +26,33 @@ agent can be a mix, and you'll tweak it in a second.
 | 🤗 **The Warm Bestie** | Casual, caring, talks like your closest friend |
 | 😏 **The Deadpan Comedian** | Dry, sarcastic, understated, secretly very competent |
 
-Remember the one you like (or "a mix of Hype Friend + Witty Sidekick"). You'll
-hand it to Claude in the prompt below.
+Remember the one you like (or "a mix of Hype Friend + Witty Sidekick") — you'll
+tell Claude in a second.
 
 ---
 
-## Do it: the Ideation prompt
+## Do it
 
-Open Claude in a folder for today's project, then paste this:
+Point Claude at the guide that came with your starter:
 
 > 📋 **Paste this to Claude:**
 ```text
-You are helping me design the PERSONALITY of my personal AI agent — a little AI
-version of me that I'll chat with in my browser. Your ONLY job right now is to
-figure out how I talk and write it down. Do NOT write any code.
-
-Keep this SHORT. Ask me a small set of quick questions, ONE or TWO at a time,
-mostly multiple-choice so I can answer in a word. Aim for about 5–6 questions
-total, then stop — don't drag it out.
-- Start by asking which "vibe" fits me best (e.g. Witty Sidekick, Hype Friend,
-  Calm Mentor, Sharp Professional, Warm Bestie, Deadpan Comedian — or a mix).
-- Then ask only what you still need: how formal/casual, how much humour, emojis
-  or not, a couple of words/phrases I actually say, and one thing my agent
-  should NEVER do.
-- Also help me NAME my agent — suggest 3 names from my answers, or use mine.
-
-When you have enough, write all of it into a file called "ideation.md" in this
-folder: a short, vivid description of my voice written as "You are ...", with my
-agent's NAME at the top. Show it to me and tell me my agent's name. (We'll turn
-this into my agent in the Build step.)
-
-Begin by greeting me and asking your first question.
+Read ideation.md and help me scope my agent's personality. Keep it quick — just a
+few questions — then write my PERSONALITY.md and tell me my agent's name.
 ```
+
+Claude will ask a handful of quick questions (vibe, humour, emojis, a phrase or
+two you use, anything to avoid), help you name it, and save your **`PERSONALITY.md`**.
 
 ---
 
 ## You're done with ideation when…
 
 - [ ] Your agent has a **name** you like.
-- [ ] Your **`ideation.md`** is written (Claude saved it to your folder).
+- [ ] Your **`PERSONALITY.md`** is written.
 
 > 💡 Don't aim for perfect — you'll hear your agent talk in a few minutes and can
-> tweak the personality any time. If Claude keeps asking questions, just say:
-> *"that's enough, write my ideation.md now."*
+> tweak it any time. If Claude keeps asking questions, just say *"that's enough,
+> write my PERSONALITY.md now."*
 
 👉 Next: **Build** — bring it to life in your browser.

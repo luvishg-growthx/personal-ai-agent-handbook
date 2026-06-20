@@ -15,11 +15,9 @@ A chat window in your browser where you talk to your agent. It will:
 
 - 💬 **Talk like you** — your tone, your humour, your vibe.
 - 🧠 **Remember you** — things you tell it stick around.
-- 📧 **Help with email** — read your inbox and write replies in your voice.
-- ⏰ **Remind you** — "ping me at 7pm" and it does.
-- 📅 **Manage your calendar** — "block 6–8pm for deep work" and it does.
-
-And more — you choose which powers to add.
+- 💪 **Automate your everyday workflows** — you give it powers to handle whatever
+  a copy of you would (think email, reminders, calendar, Slack… you pick). See
+  the **Capabilities** page for the full menu.
 
 ---
 
@@ -66,8 +64,18 @@ once (do the **Before You Arrive** installs first, then this):
    ```
    claude
    ```
+5. **Get your starter** — paste this to Claude:
 
-That's your home base. Everything — Ideate and Build — happens right here in this
-folder.
+> 📋 **Paste this to Claude:**
+```text
+Download my agent's starter into this folder by running:
+git clone https://github.com/luvishg-growthx/personal-ai-agent-starter .
+Then tell me, in one friendly line, that it's ready.
+```
 
-> 👉 Next: do **Before You Arrive** to get set up, then come back and **Ideate**.
+That drops in everything — your agent's files **and** the two short guides
+(`ideation.md`, `build.md`) your AI will follow next. This folder is your home
+base for the whole day.
+
+> 👉 Next: do **Before You Arrive** to get set up (if you haven't), then
+> **Ideate**.

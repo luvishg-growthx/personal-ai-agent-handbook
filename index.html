@@ -125,8 +125,8 @@ pre.code code{background:none;border:none;padding:0;font-size:12.5px;color:var(-
 <hr class="rule"/>
 <h2>What you'll end up with</h2>
 <p>A chat window in your browser where you talk to your agent. It will:</p>
-<ul><li>💬 <strong>Talk like you</strong> — your tone, your humour, your vibe.</li><li>🧠 <strong>Remember you</strong> — things you tell it stick around.</li><li>📧 <strong>Help with email</strong> — read your inbox and write replies in your voice.</li><li>⏰ <strong>Remind you</strong> — "ping me at 7pm" and it does.</li><li>📅 <strong>Manage your calendar</strong> — "block 6–8pm for deep work" and it does.</li></ul>
-<p>And more — you choose which powers to add.</p>
+<ul><li>💬 <strong>Talk like you</strong> — your tone, your humour, your vibe.</li><li>🧠 <strong>Remember you</strong> — things you tell it stick around.</li><li>💪 <strong>Automate your everyday workflows</strong> — you give it powers to handle whatever</li></ul>
+<p>  a copy of you would (think email, reminders, calendar, Slack… you pick). See   the <strong>Capabilities</strong> page for the full menu.</p>
 <hr class="rule"/>
 <h2>The day, in three simple phases</h2>
 <div class="table-wrap"><table><thead><tr><th>Phase</th><th>What you do</th></tr></thead><tbody><tr><td>1. <strong>Ideate</strong></td><td>Decide who your agent <em>is</em> — its name and personality.</td></tr><tr><td>2. <strong>Build</strong></td><td>Bring it to life in your browser, then give it powers.</td></tr><tr><td>3. <strong>Demo</strong></td><td>Show it off on the big screen.</td></tr></tbody></table></div>
@@ -146,8 +146,12 @@ pre.code code{background:none;border:none;padding:0;font-size:12.5px;color:var(-
 <p>   <code>my-agent</code> folder automatically).</p>
 <ol><li>Start your AI helper — type this and press Enter:</li></ol>
 <pre class="code"><code>   claude</code></pre>
-<p>That's your home base. Everything — Ideate and Build — happens right here in this folder.</p>
-<div class="callout">👉 Next: do <strong>Before You Arrive</strong> to get set up, then come back and <strong>Ideate</strong>.</div>
+<ol><li><strong>Get your starter</strong> — paste this to Claude:</li></ol>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-0"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-0">Download my agent's starter into this folder by running:
+git clone https://github.com/luvishg-growthx/personal-ai-agent-starter .
+Then tell me, in one friendly line, that it's ready.</pre></div>
+<p>That drops in everything — your agent's files <strong>and</strong> the two short guides (<code>ideation.md</code>, <code>build.md</code>) your AI will follow next. This folder is your home base for the whole day.</p>
+<div class="callout">👉 Next: do <strong>Before You Arrive</strong> to get set up (if you haven't), then<br/><strong>Ideate</strong>.</div>
 
 <div class="page-foot">Personal AI Agent · Builder Handbook</div></section>
 <section class="page" data-page="1">
@@ -196,154 +200,106 @@ claude --version</code></pre>
 <div class="page-num">02 · Build</div>
 <h1>Phase 1 — Ideate</h1>
 <p>Before any building, decide <strong>who your agent is</strong>: its <strong>name</strong> and its <strong>personality</strong>. That personality is the single most important thing — it's what makes the agent feel like <em>you</em> and not a robot.</p>
-<p>Keep it light. You'll have a short chat with Claude about how you talk, and it saves the result to a file your agent will use in the next phase.</p>
-<div class="callout">No code here. Just a quick conversation about your voice.</div>
+<p>Keep it light. You'll have a short chat with Claude about how you talk, and it writes the result into your agent's <code>PERSONALITY.md</code>.</p>
+<div class="callout">No code here. Just a quick conversation about your voice. (Your starter already<br/>includes a short <code>ideation.md</code> guide — Claude follows it for you.)</div>
 <hr class="rule"/>
 <h2>Pick a starting vibe (optional, but it helps)</h2>
 <p>Don't start from a blank page. Skim these and pick the one closest to you — your agent can be a mix, and you'll tweak it in a second.</p>
 <div class="table-wrap"><table><thead><tr><th>Vibe</th><th>Sounds like…</th></tr></thead><tbody><tr><td>😎 <strong>The Witty Sidekick</strong></td><td>Quick, playful, a joke in every reply, but always helpful</td></tr><tr><td>🔥 <strong>The Hype Friend</strong></td><td>Warm, encouraging, hypes you up, lots of energy + emojis</td></tr><tr><td>🧘 <strong>The Calm Mentor</strong></td><td>Steady, thoughtful, kind, never rushed</td></tr><tr><td>💼 <strong>The Sharp Professional</strong></td><td>Crisp, confident, polished — friendly but to the point</td></tr><tr><td>🤗 <strong>The Warm Bestie</strong></td><td>Casual, caring, talks like your closest friend</td></tr><tr><td>😏 <strong>The Deadpan Comedian</strong></td><td>Dry, sarcastic, understated, secretly very competent</td></tr></tbody></table></div>
-<p>Remember the one you like (or "a mix of Hype Friend + Witty Sidekick"). You'll hand it to Claude in the prompt below.</p>
+<p>Remember the one you like (or "a mix of Hype Friend + Witty Sidekick") — you'll tell Claude in a second.</p>
 <hr class="rule"/>
-<h2>Do it: the Ideation prompt</h2>
-<p>Open Claude in a folder for today's project, then paste this:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-0"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-0">You are helping me design the PERSONALITY of my personal AI agent — a little AI
-version of me that I'll chat with in my browser. Your ONLY job right now is to
-figure out how I talk and write it down. Do NOT write any code.
-
-Keep this SHORT. Ask me a small set of quick questions, ONE or TWO at a time,
-mostly multiple-choice so I can answer in a word. Aim for about 5–6 questions
-total, then stop — don't drag it out.
-- Start by asking which "vibe" fits me best (e.g. Witty Sidekick, Hype Friend,
-  Calm Mentor, Sharp Professional, Warm Bestie, Deadpan Comedian — or a mix).
-- Then ask only what you still need: how formal/casual, how much humour, emojis
-  or not, a couple of words/phrases I actually say, and one thing my agent
-  should NEVER do.
-- Also help me NAME my agent — suggest 3 names from my answers, or use mine.
-
-When you have enough, write all of it into a file called "ideation.md" in this
-folder: a short, vivid description of my voice written as "You are ...", with my
-agent's NAME at the top. Show it to me and tell me my agent's name. (We'll turn
-this into my agent in the Build step.)
-
-Begin by greeting me and asking your first question.</pre></div>
+<h2>Do it</h2>
+<p>Point Claude at the guide that came with your starter:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-1"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-1">Read ideation.md and help me scope my agent's personality. Keep it quick — just a
+few questions — then write my PERSONALITY.md and tell me my agent's name.</pre></div>
+<p>Claude will ask a handful of quick questions (vibe, humour, emojis, a phrase or two you use, anything to avoid), help you name it, and save your <strong><code>PERSONALITY.md</code></strong>.</p>
 <hr class="rule"/>
 <h2>You're done with ideation when…</h2>
-<ul><li>☐ Your agent has a <strong>name</strong> you like.</li><li>☐ Your <strong><code>ideation.md</code></strong> is written (Claude saved it to your folder).</li></ul>
-<div class="callout">💡 Don't aim for perfect — you'll hear your agent talk in a few minutes and can<br/>tweak the personality any time. If Claude keeps asking questions, just say:<br/><em>"that's enough, write my ideation.md now."</em></div>
+<ul><li>☐ Your agent has a <strong>name</strong> you like.</li><li>☐ Your <strong><code>PERSONALITY.md</code></strong> is written.</li></ul>
+<div class="callout">💡 Don't aim for perfect — you'll hear your agent talk in a few minutes and can<br/>tweak it any time. If Claude keeps asking questions, just say *"that's enough,<br/>write my PERSONALITY.md now."*</div>
 <p>👉 Next: <strong>Build</strong> — bring it to life in your browser.</p>
 
 <div class="page-foot">Personal AI Agent · Builder Handbook</div></section>
 <section class="page" data-page="3">
 <div class="page-num">03 · Build</div>
 <h1>Phase 2 — Build</h1>
-<p>Now bring your agent to life in the browser. One prompt does the heavy lifting: it downloads the ready-made starter, pours in the personality you designed, and opens your agent in your browser.</p>
-<div class="callout">Make sure you finished <strong>Ideate</strong> first — this step uses the <code>ideation.md</code> it<br/>created.</div>
-<p>This is <strong>Iteration 1: your web interface.</strong> Once your agent is chatting in your voice, you'll build it up power-by-power in <strong>Iterations 2–5</strong> on the next page.</p>
+<p>Now bring your agent to life in the browser. Your starter came with a short <code>build.md</code> guide — just point Claude at it and it does the heavy lifting.</p>
+<div class="callout">Make sure you finished <strong>Ideate</strong> first — this uses the <code>PERSONALITY.md</code> it<br/>wrote.</div>
+<p>This is <strong>Iteration 1: your web interface.</strong> Once your agent is chatting in your voice, you'll build it up power-by-power in <strong>Iterations 2–5</strong> (the Capabilities page).</p>
 <hr class="rule"/>
 <h2>The Build prompt</h2>
-<p>In the same Claude window (the one in your <code>my-agent</code>… er, your project folder), paste this:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-1"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-1">You're building my personal AI agent from a ready-made starter. Do all of this,
-in order, in this folder:
-
-1. Download the starter:
-   git clone https://github.com/luvishg-growthx/personal-ai-agent-starter my-agent
-
-2. Read my ideation.md (the personality I designed). Use it to write
-   my-agent/PERSONALITY.md in my voice, and set my agent's NAME everywhere it
-   shows — in my-agent/PERSONALITY.md and the title + header in
-   my-agent/public/index.html.
-
-3. Remember these names for the rest of the project: agent.js is the BRAIN (the
-   only file that talks to the AI), server.js runs the website, PERSONALITY.md is
-   the voice. If a power I add later mentions "twin.js" it means agent.js, and
-   "CLAUDE.md"/"PERSONA.md" mean PERSONALITY.md. Always wire powers INTO agent.js
-   — never make a second brain file.
-
-4. Start my-agent's website in the background and tell me the exact link to open
-   in my browser. Keep it running.
-
-Then tell me in one line that my agent is live and where to click.</pre></div>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-2"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-2">Read build.md and build my agent (Iteration 1): apply my PERSONALITY.md, set my
+agent's name in the web page, and start the website in the background. Then give
+me the exact link to open in my browser, and keep it running.</pre></div>
 <hr class="rule"/>
 <h2>See it talk (your magic moment)</h2>
 <p>Open the link Claude gives you (something like <strong>http://localhost:3000</strong>) in your browser. You'll see a chat box. <strong>Say hi.</strong> It should answer in <em>your</em> voice. 🎉</p>
 <p>Doesn't sound quite like you yet?</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-2"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-2">That reply didn't sound like me — it was too [formal / stiff / generic]. Update
-my-agent/PERSONALITY.md to be more [what you want], then I'll test again.</pre></div>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-3"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-3">That reply didn't sound like me — it was too [formal / stiff / generic]. Update
+PERSONALITY.md to be more [what you want], then I'll test again.</pre></div>
 <p>(No restart needed — it reads your personality fresh on every reply.)</p>
 <div class="callout">💾 <strong>Save your progress.</strong> Paste <code>checkpoint</code> and Claude saves your work so you<br/>can always come back to this exact point.</div>
 <hr class="rule"/>
 <h2>Iteration 1 complete ✅</h2>
-<p>A real agent that <strong>chats like you</strong> and <strong>remembers the conversation</strong>, running in your browser. That's the foundation. Now build it up in iterations — 👉 go to <strong>Capabilities</strong> for <strong>Iteration 2</strong> onward.</p>
+<p>A real agent that <strong>chats like you</strong> and <strong>remembers the conversation</strong>, running in your browser. That's the foundation. Now give it powers — 👉 head to <strong>Capabilities</strong>.</p>
 
 <div class="page-foot">Personal AI Agent · Builder Handbook</div></section>
 <section class="page" data-page="4">
 <div class="page-num">04 · Build</div>
-<h1>Powers — build it up, one iteration at a time</h1>
-<p>Your web agent (Iteration 1) chats like you and remembers. Now add real powers in order. Each iteration is a <strong>ready-made module</strong> — you don't build it, you paste a prompt and your AI wires it in.</p>
-<p><strong>Do them in order</strong>, and <strong>test after each</strong> by talking to your agent. <strong>Click an iteration to open its steps.</strong> You don't have to do all of them — but Memory (Iteration 2) is the one everyone should add.</p>
-<div class="callout">Every power wires into your agent's brain (<code>agent.js</code>), so it works in your<br/>browser chat automatically once it's added.</div>
+<h1>Powers — everything your agent can do</h1>
+<p>Your web agent (Iteration 1) chats like you and remembers. Now give it powers to <strong>automate your workflows</strong>. Each power is a <strong>ready-made module or connector</strong> — you don't build it, you just ask Claude (it follows the <code>build.md</code> guide that came with your starter) and it wires it in.</p>
+<p><strong>Click a power to see what it unlocks and how to switch it on.</strong> Add the ones you'd actually use — easiest in order — and <strong>test each by talking to your agent</strong>. <strong>Memory</strong> is the best first one.</p>
+<div class="callout">Everything wires into your agent's brain (<code>agent.js</code>), so each power works in<br/>your browser chat the moment it's added.</div>
 <hr class="rule"/>
-<details class="cap"><summary><span class="cap-title">Iteration 2 · 🧠 Memory — remember things forever</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> your agent remembers things across every chat, not just the one you're in.</p>
-<p><strong>Add it:</strong></p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-3"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-3">Add long-term memory to my agent. First clone the module, then follow its guide:
-git clone https://github.com/luvishg-growthx/long-term-memory-engram-setup-guide-for-your-ai-agent memory-module
-Read memory-module's guide and do everything it needs (including any installs),
-wiring it INTO my agent's brain (my-agent/agent.js) — its "twin.js" means my
-agent.js, its "CLAUDE.md"/"PERSONA.md" mean my PERSONALITY.md. Don't make a
-second brain file. When it's wired in, delete the memory-module folder, restart
-my agent, and give me the link.</pre></div>
-<p><strong>Test it:</strong> tell your agent something ("my dog's name is Pixel"). Ask Claude to <em>"restart my agent"</em>, open a fresh chat, and ask <em>"what's my dog's name?"</em> — it remembers. 🧠</p>
+<details class="cap"><summary><span class="cap-title">Iteration 2 · 🧠 Memory — remembers across chats</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
+<ul><li>Remembers facts you tell it (people, preferences, decisions) — forever.</li><li>Pulls up relevant past context automatically before replying.</li><li>Answers <em>"what did we discuss about X?"</em> from your own history.</li><li>Gets sharper over time (useful memories kept, noise forgotten).</li></ul>
+<p><strong>Switch it on:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-4"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-4">Add the Memory power to my agent — follow the Memory (Iteration 2) steps in
+build.md, wire it into agent.js, then restart my agent and give me the link.</pre></div>
+<p><strong>Try it:</strong> tell it <em>"my dog's name is Pixel,"</em> restart, open a fresh chat, and ask <em>"what's my dog's name?"</em> — it remembers. 🧠</p>
 </div></details>
-<details class="cap"><summary><span class="cap-title">Iteration 3 · ⏰ Reminders — send me things later</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> "remind me at 7pm" or "every weekday at 9am send me a hype message" — it pops up on time, in your voice.</p>
-<p><strong>Add it:</strong></p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-4"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-4">Add the scheduler/reminders power to my agent. First clone the module, then
-follow its guide:
-git clone https://github.com/luvishg-growthx/cronjobs-and-reminders-setup-guide-for-your-ai-agent scheduler-module
-Read scheduler-module's guide and wire it into my agent — its "twin.js" = my
-agent's brain my-agent/agent.js; make the scheduler auto-start from
-my-agent/server.js so reminders fire whenever my agent runs. Delete the
-scheduler-module folder when done, then restart my agent and give me the link.</pre></div>
-<p><strong>Test it</strong> — in your browser chat:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-5"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-5">Send me a hi message in 2 minutes.</pre></div>
+<details class="cap"><summary><span class="cap-title">Iteration 3 · ⏰ Reminders — sends you things later</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
+<ul><li>One-off reminders/messages — <em>"send me a hi at 7:30pm."</em></li><li>Recurring reminders — <em>"every weekday at 9am, nudge me about standup."</em></li><li>Scheduled messages to a channel (once Slack is added).</li></ul>
+<p><strong>Switch it on:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-5"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-5">Add the Reminders power to my agent — follow the Reminders (Iteration 3) steps in
+build.md, wire it into agent.js + auto-start from server.js, then restart and
+give me the link.</pre></div>
+<p><strong>Try it</strong> — in your browser chat:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-6"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-6">Send me a hi message in 2 minutes.</pre></div>
 </div></details>
-<details class="cap"><summary><span class="cap-title">Iteration 4 · 📧 Email — draft replies in your voice</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> reads your unread Gmail and writes draft replies in your voice. It <strong>never sends</strong> anything — it only drafts, for you to check.</p>
+<details class="cap"><summary><span class="cap-title">Iteration 4 · 📧 Email — drafts replies in your voice</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
+<ul><li>Summarizes your unread inbox (who wants what, at a glance).</li><li>Drafts replies in your voice (<strong>never sends</strong> — only drafts you review).</li><li>Triages real human mail vs no-reply/marketing noise.</li><li>Drafts a single reply on demand from any message you paste.</li></ul>
 <p><strong>Connect Gmail first (one-time, on the web):</strong> go to <a href="https://claude.ai/customize/connectors" target="_blank" rel="noopener">https://claude.ai/customize/connectors</a> → <strong>Gmail</strong> → <strong>Connect</strong> → sign in → allow read access.</p>
-<p><strong>Add it:</strong></p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-6"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-6">Add the email reply-drafting power to my agent. First clone the module, then
-follow its guide:
-git clone https://github.com/luvishg-growthx/reading-your-emails-and-drafting-a-reply-for-them-setup-guide-for-your-ai-agent email-module
-Read email-module's guide and set it up for my agent (its "twin.js" = my agent's
-brain my-agent/agent.js, "CLAUDE.md"/"PERSONA.md" = my PERSONALITY.md). Delete
-the email-module folder when done.</pre></div>
-<p><strong>Test it</strong> — in your browser chat:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-7"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-7">Read my unread emails and draft replies to the ones a human would reply to, in
-my voice. Save the drafts to a file and tell me where.</pre></div>
+<p><strong>Switch it on:</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-7"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-7">Add the Email power to my agent — follow the Email (Iteration 4) steps in build.md.</pre></div>
+<p><strong>Try it</strong> — in your browser chat:</p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-8"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-8">Read my unread emails and draft replies to the ones a human would reply to, in my
+voice. Save them to a file and tell me where.</pre></div>
 </div></details>
-<details class="cap"><summary><span class="cap-title">Iteration 5 (optional) · 💬 Slack — put your agent on Slack</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> message your agent from Slack too — and this is where you <strong>deploy</strong> it on a real chat app. It needs a Slack account and a couple of tokens, so do it only if you're comfortable / ahead of time.</p>
-<p><strong>Add it (this also walks you through deploying on Slack):</strong></p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-8"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-8">Add the Slack power to my agent and help me deploy it on Slack. First clone the
-module, then follow its guide:
-git clone https://github.com/luvishg-growthx/upgrading-your-bot-to-being-a-slack-bot slack-module
-Read slack-module's guide and wire Slack into my agent alongside my website (its
-"twin.js" = my agent's brain my-agent/agent.js) — don't replace my website. Then
-walk me step by step through creating the Slack app, getting my two tokens, and
-running it so I can message my agent in Slack. Delete the slack-module folder when
-done.</pre></div>
-<p>When it's done, open Slack, find your app, and DM it — it replies in your voice. 🎉</p>
-</div></details>
-<hr class="rule"/>
-<h2>Bonus power (optional) · 📅 Calendar</h2>
-<p>Want your agent to manage your calendar — <em>"block 6–8pm for deep work"</em>? It's a quick add-on (no code module — it uses Claude's calendar connector).</p>
-<details class="cap"><summary><span class="cap-title">📅 Calendar — block time &amp; create events</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it does:</strong> your agent can check your calendar and block time or add events.</p>
-<p><strong>Connect your calendar first (one-time, on the web):</strong></p>
-<ol><li>Go to <a href="https://claude.ai/customize/connectors" target="_blank" rel="noopener">https://claude.ai/customize/connectors</a></li><li>Find <strong>Google Calendar</strong> → <strong>Connect</strong> → sign in to Google → <strong>Allow</strong> access.</li><li>Make sure it shows as <strong>Connected</strong>.</li></ol>
-<p>That's it — no code needed. Once connected, just ask your agent.</p>
+<details class="cap"><summary><span class="cap-title">📅 Calendar — block time &amp; manage events</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
+<ul><li>Block time — <em>"block 6–8pm today for deep work."</em></li><li>Check availability — <em>"am I free Thursday afternoon?"</em></li><li>Create events — <em>"add a call with Sam tomorrow at 4pm."</em></li></ul>
+<p><strong>Switch it on (one-time, on the web — no code module needed):</strong> go to <a href="https://claude.ai/customize/connectors" target="_blank" rel="noopener">https://claude.ai/customize/connectors</a> → <strong>Google Calendar</strong> → <strong>Connect</strong> → sign in → <strong>Allow</strong> access. Make sure it shows <strong>Connected</strong>.</p>
 <p><strong>Try it</strong> — in your browser chat:</p>
 <div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Type this to your agent</span><button class="copy-btn" data-copy="prompt-9"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-9">Block my calendar from 6pm to 8pm today for deep work, and title it "Focus".</pre></div>
-<p>(Works for <em>"am I free Thursday afternoon?"</em> and <em>"add a call with Sam tomorrow at 4pm"</em> too.)</p>
+</div></details>
+<details class="cap"><summary><span class="cap-title">Iteration 5 (optional) · 💬 Slack — and deploy on Slack</span><span class="cap-chev">›</span></summary><div class="cap-body"><p><strong>What it unlocks:</strong></p>
+<ul><li>Replies to DMs/mentions in your voice, in-thread.</li><li>Summarizes a busy thread or channel to catch you up.</li><li>Sends a message on demand — <em>"post 'standup in 5' to #general."</em></li><li>Edits or deletes a message it sent.</li></ul>
+<p>This is also where you <strong>deploy</strong> your agent on a real chat app. It needs a Slack account and two tokens, so add it only if you're comfortable / ahead of time.</p>
+<p><strong>Switch it on (this also walks you through deploying):</strong></p>
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-10"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-10">Add the Slack power to my agent and help me deploy it — follow the Slack
+(Iteration 5) steps in build.md. Walk me step by step through creating the Slack
+app, getting my two tokens, and running it so I can message my agent in Slack.</pre></div>
+<p>When it's done, open Slack, find your app, and DM it. 🎉</p>
+</div></details>
+<details class="cap"><summary><span class="cap-title">🔗 Combined — powers working together</span><span class="cap-chev">›</span></summary><div class="cap-body"><p>Once you've added a few powers, your agent can chain them:</p>
+<ul><li><strong>Read an email → summarize it → remember the key facts</strong> for later.</li><li><strong>Recall what it knows</strong> about a person/topic to write sharper email or Slack replies.</li><li><strong>Scheduled daily digest</strong> — each morning, summarize your unread email (and</li></ul>
+<p>  Slack) and send it to you.</p>
+<p>Just ask — e.g. <em>"every morning at 8am, summarize my unread email and send it to me."</em></p>
 </div></details>
 <hr class="rule"/>
-<div class="callout">💾 After each iteration works, paste <code>checkpoint</code> so Claude saves your progress.</div>
+<h2>Module repos (for reference / manual copy)</h2>
+<div class="table-wrap"><table><thead><tr><th>Power</th><th>Repo</th></tr></thead><tbody><tr><td>🧠 Memory</td><td>https://github.com/luvishg-growthx/long-term-memory-engram-setup-guide-for-your-ai-agent</td></tr><tr><td>⏰ Reminders</td><td>https://github.com/luvishg-growthx/cronjobs-and-reminders-setup-guide-for-your-ai-agent</td></tr><tr><td>📧 Email</td><td>https://github.com/luvishg-growthx/reading-your-emails-and-drafting-a-reply-for-them-setup-guide-for-your-ai-agent</td></tr><tr><td>💬 Slack</td><td>https://github.com/luvishg-growthx/upgrading-your-bot-to-being-a-slack-bot</td></tr></tbody></table></div>
+<div class="callout">💾 After each power works, paste <code>checkpoint</code> so Claude saves your progress.</div>
 <p>👉 When you've built up the powers you want, head to <strong>Demo</strong>.</p>
 
 <div class="page-foot">Personal AI Agent · Builder Handbook</div></section>
@@ -354,7 +310,7 @@ done.</pre></div>
 <hr class="rule"/>
 <h2>Quick polish first</h2>
 <p>Send your agent 3–4 messages and read the replies out loud. If anything feels off, fix it in one line:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-10"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-10">My agent's replies feel a bit [too long / too formal / not funny enough]. Tweak
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-11"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-11">My agent's replies feel a bit [too long / too formal / not funny enough]. Tweak
 my-agent/PERSONALITY.md to fix that, then I'll test again.</pre></div>
 <p>(No restart needed — personality updates instantly.)</p>
 <hr class="rule"/>
@@ -384,7 +340,7 @@ Then show your wow moment (memory / reminder / calendar / email).
 <p>  knows it's a real build.</p>
 <hr class="rule"/>
 <h2>Prep your script with Claude (optional)</h2>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-11"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-11">Help me write a tight, honest demo script for my agent. Its name is [name], it
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude</span><button class="copy-btn" data-copy="prompt-12"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-12">Help me write a tight, honest demo script for my agent. Its name is [name], it
 [what it does], and the coolest thing it does is [memory / reminders / calendar /
 email]. Give me my opening line, what to show, and a strong closing line.</pre></div>
 <hr class="rule"/>
@@ -397,7 +353,7 @@ email]. Give me my opening line, what to show, and a strong closing line.</pre><
 <p>Nothing here is scary. Almost everything is fixed the same way: <strong>tell Claude what happened and let it fix it.</strong> You built this by talking; you fix it by talking too.</p>
 <h2>The one move that fixes most things</h2>
 <p>If you see a scary red message anywhere, copy the whole thing and paste:</p>
-<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude (with the message)</span><button class="copy-btn" data-copy="prompt-12"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-12">Something went wrong and I got this — please explain it simply and fix it for me:
+<div class="prompt-block"><div class="prompt-head"><span class="prompt-label">Paste this to Claude (with the message)</span><button class="copy-btn" data-copy="prompt-13"><span>Copy</span></button></div><pre class="prompt-body" id="prompt-13">Something went wrong and I got this — please explain it simply and fix it for me:
 
 [paste the entire message here]</pre></div>
 <p>Then try again. Repeat if needed. This back-and-forth <strong>is</strong> building. Stay calm.</p>

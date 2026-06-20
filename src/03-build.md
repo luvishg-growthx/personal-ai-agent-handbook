@@ -1,45 +1,24 @@
 # Phase 2 — Build
 
-Now bring your agent to life in the browser. One prompt does the heavy lifting:
-it downloads the ready-made starter, pours in the personality you designed, and
-opens your agent in your browser.
+Now bring your agent to life in the browser. Your starter came with a short
+`build.md` guide — just point Claude at it and it does the heavy lifting.
 
-> Make sure you finished **Ideate** first — this step uses the `ideation.md` it
-> created.
+> Make sure you finished **Ideate** first — this uses the `PERSONALITY.md` it
+> wrote.
 
 This is **Iteration 1: your web interface.** Once your agent is chatting in your
-voice, you'll build it up power-by-power in **Iterations 2–5** on the next page.
+voice, you'll build it up power-by-power in **Iterations 2–5** (the Capabilities
+page).
 
 ---
 
 ## The Build prompt
 
-In the same Claude window (the one in your `my-agent`… er, your project folder),
-paste this:
-
 > 📋 **Paste this to Claude:**
 ```text
-You're building my personal AI agent from a ready-made starter. Do all of this,
-in order, in this folder:
-
-1. Download the starter:
-   git clone https://github.com/luvishg-growthx/personal-ai-agent-starter my-agent
-
-2. Read my ideation.md (the personality I designed). Use it to write
-   my-agent/PERSONALITY.md in my voice, and set my agent's NAME everywhere it
-   shows — in my-agent/PERSONALITY.md and the title + header in
-   my-agent/public/index.html.
-
-3. Remember these names for the rest of the project: agent.js is the BRAIN (the
-   only file that talks to the AI), server.js runs the website, PERSONALITY.md is
-   the voice. If a power I add later mentions "twin.js" it means agent.js, and
-   "CLAUDE.md"/"PERSONA.md" mean PERSONALITY.md. Always wire powers INTO agent.js
-   — never make a second brain file.
-
-4. Start my-agent's website in the background and tell me the exact link to open
-   in my browser. Keep it running.
-
-Then tell me in one line that my agent is live and where to click.
+Read build.md and build my agent (Iteration 1): apply my PERSONALITY.md, set my
+agent's name in the web page, and start the website in the background. Then give
+me the exact link to open in my browser, and keep it running.
 ```
 
 ---
@@ -54,7 +33,7 @@ Doesn't sound quite like you yet?
 > 📋 **Paste this to Claude:**
 ```text
 That reply didn't sound like me — it was too [formal / stiff / generic]. Update
-my-agent/PERSONALITY.md to be more [what you want], then I'll test again.
+PERSONALITY.md to be more [what you want], then I'll test again.
 ```
 
 (No restart needed — it reads your personality fresh on every reply.)
@@ -67,5 +46,5 @@ my-agent/PERSONALITY.md to be more [what you want], then I'll test again.
 ## Iteration 1 complete ✅
 
 A real agent that **chats like you** and **remembers the conversation**, running
-in your browser. That's the foundation. Now build it up in iterations — 👉 go to
-**Capabilities** for **Iteration 2** onward.
+in your browser. That's the foundation. Now give it powers — 👉 head to
+**Capabilities**.
